@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- Using annotation-config, the bean dependencies need not be defined in xml configuration file.
+     The dependencies can be injected using Autowired annotation in property setter. However, the beans
+     itself have to defined in configuration-->
+
+    <context:annotation-config />
+
+    <bean id="paymentService" class="com.codei.spring.annotationConfig.PaymentService" />
+    <bean id="cardService" class="com.codei.spring.annotationConfig.CardService" />
+    <bean id="notificationService" class="com.codei.spring.annotationConfig.NotificationService" />
+</beans>

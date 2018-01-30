@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- IoC in action : Objects define their dependencies in form of constructor args, arguments to factory methods
+     or properties that are set after object is created. The container injects these properties when creating the bean.-->
+    <bean id="taxService" class="com.codei.spring.propertyinjection.TaxServiceImpl" />
+    <bean id="employeeService" class="com.codei.spring.propertyinjection.EmployeeServiceImpl">
+        <property name="taxService" ref="taxService" />
+    </bean>
+
+    <!-- This beans shows constructor injection. EmailService is injected via constructor injection -->
+    <bean id="emailService" class="com.codei.spring.constructorinjection.EmailServiceImpl" />
+    <bean id="paymentService" class="com.codei.spring.constructorinjection.PaymentServiceImpl">
+        <constructor-arg ref="emailService" />
+    </bean>
+
+    <!-- In this configuration, the dependency is injected via factory method. The class attribute defines
+     class which has factory method which returns a bean of type reservationService. The name of factory method
+     is defined in factory-method attribute-->
+    <bean id="reservationService" class="com.codei.spring.factoryInjection.ThirdPartyUtil" factory-method="instantiate" />
+
+</beans>
